@@ -1,8 +1,20 @@
-var React = require('react');
-var homeStyle = require('../styles').home;
+import React from 'react'
+import Styles from '../styles'
+import { connect } from 'react-redux'
+import { fetchUser } from '../actions/userActions'
+const homeStyle = Styles.home;
 
-var Home = React.createClass({
-    render: function(){
+@connect((store) =>{
+    return {
+        user: store.user.user
+    };
+})
+export default class Home extends React.Component{
+    componentWillMount(){
+        this.props.dispatch(fetchUser());
+    }
+    render() {
+        console.log(this.props)
         return (
             <div style={homeStyle.mainDiv}>
                 <div className="container">
@@ -25,6 +37,4 @@ var Home = React.createClass({
             </div>
         )
     }
-})
-
-module.exports = Home;
+}
