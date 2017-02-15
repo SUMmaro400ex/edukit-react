@@ -4,17 +4,11 @@ import { connect } from 'react-redux'
 import { fetchUser } from '../actions/userActions'
 const homeStyle = Styles.home;
 
-@connect((store) =>{
-    return {
-        user: store.user.user
-    };
-})
-export default class Home extends React.Component{
+class Home extends React.Component{
     componentWillMount(){
-        this.props.dispatch(fetchUser());
+        this.props.fetchUser();
     }
     render() {
-        console.log(this.props)
         return (
             <div style={homeStyle.mainDiv}>
                 <div className="container">
@@ -38,3 +32,14 @@ export default class Home extends React.Component{
         )
     }
 }
+
+function mapStateToProps(state){
+    return {user: state.user};
+}
+
+function mapDispatchToProps(dispatch){
+    return({fetchUser: function(){dispatch(fetchUser())}
+    });
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
