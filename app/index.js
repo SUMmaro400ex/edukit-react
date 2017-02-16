@@ -6,7 +6,7 @@ import Routes from './config/routes'
 
 ReactDOM.render(
     <Provider store={store}>
-       <Routes />
+        <Routes />
     </Provider>,
     document.getElementById('app')
 );

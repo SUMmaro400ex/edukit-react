@@ -7,9 +7,9 @@ var styles = {
             height: '3rem', 
             float: 'left'
         },
-        edukit:{
-            display: 'inline',
-            paddingLeft:'1rem'
+        login:{
+            marginRight: 5,
+            marginTop: 10
         }
     },
     home:{

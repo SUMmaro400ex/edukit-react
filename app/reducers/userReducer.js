@@ -4,23 +4,28 @@ const initialState = {
         name: null,
         age: null
     },
+    authToken: null,
     fetching: false,
     fetched: false,
-    error: false
+    error: false,
 }
 export default function reducer(state = initialState, action){
     switch (action.type){
-        case "FETCH_USER":{
-            state = { ...state, fetching: true};
+        case "LOGIN_SUCCESS":{
+            state =  { ...state, fetched: true, fetching: false, authToken: action.payload.auth_token, password: null, email: null};
+            break;
         }
-        case "USER_RECEIVED":{
-            state =  { ...state, fetched: true, fetching: false, user: action.payload};
+        case "LOGIN_ERROR":{
+            state =  { ...state, fetching: false, fetched: false, error: action.payload, authToken: null, password: null, email: null};
+            break;
         }
-        case "FETCH_ERROR":{
-            state =  { ...state, fetching: false, fetched: false, error: action.payload};
+        case "LOGIN_EMAIL_ENTERED":{
+            state = { ...state, email: action.payload};
+            break;
         }
-        case "SET_USER_NAME":{
-            state =  { ...state.user, name: action.payload};
+        case "LOGIN_PASSWORD_ENTERED":{
+            state = { ...state, password: action.payload};
+            break;
         }
     }
     return state;

@@ -1,13 +1,8 @@
 import React from 'react'
 import Styles from '../styles'
-import { connect } from 'react-redux'
-import { fetchUser } from '../actions/userActions'
 const homeStyle = Styles.home;
 
-class Home extends React.Component{
-    componentWillMount(){
-        this.props.fetchUser();
-    }
+export default class Home extends React.Component{
     render() {
         return (
             <div style={homeStyle.mainDiv}>
@@ -32,14 +27,3 @@ class Home extends React.Component{
         )
     }
 }
-
-function mapStateToProps(state){
-    return {user: state.user};
-}
-
-function mapDispatchToProps(dispatch){
-    return({fetchUser: function(){dispatch(fetchUser())}
-    });
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);

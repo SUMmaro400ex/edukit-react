@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/navbar'
+import Navbar from '../containers/navbar'
 
 export default class Main extends React.Component{
     render(){
