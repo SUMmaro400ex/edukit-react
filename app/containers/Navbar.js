@@ -38,7 +38,7 @@ class Navbar extends React.Component{
                     <form className="navbar-form navbar-right" role="login">
                         <div className="form-group">
                             <input type="text" className="form-control" placeholder="Email" onChange={this.updateEmailValue}/>
-                            <input type="text" className="form-control" placeholder="Password" onChange={this.updatePasswordValue}/>
+                            <input type="password" className="form-control" placeholder="Password" onChange={this.updatePasswordValue}/>
                             <button type="button"  onClick={this.login} className="btn btn-default btn-success">Login</button>
                         </div>
                     </form>
