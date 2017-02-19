@@ -2,6 +2,7 @@ import React from 'react'
 import Styles from '../styles'
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/userActions'
+import { browserHistory } from 'react-router'
 
 class Navbar extends React.Component{
     constructor(props) {
@@ -19,11 +20,29 @@ class Navbar extends React.Component{
         this.props.loginPasswordEntered(evt.target.value);
     } 
 
+    loginSection(){
+        if (this.props.user.loggedIn){
+            return (<h4 className='navbar-text navbar-right'>Hello {this.props.user.firstName} {this.props.user.lastName}</h4>);
+        }
+        else{
+            return ( 
+                <form className="navbar-form navbar-right" role="login">
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Email" onChange={this.updateEmailValue}/>
+                        <input type="password" className="form-control" placeholder="Password" onChange={this.updatePasswordValue}/>
+                        <button type="button"  onClick={this.login} className="btn btn-default btn-success">Login</button>
+                    </div>
+                </form>
+            );
+        }
+    }
+    
     login(e){
         this.props.loginUser(this.props.user.email, this.props.user.password);
     }
 
     render(){
+           
         return (
             <nav className="navbar navbar-default" style={Styles.navbar.nav}>
                 <div className="container-fluid">
@@ -35,13 +54,7 @@ class Navbar extends React.Component{
                         </a>
                         <h2 className='navbar-text'>EduKit</h2>
                     </div>
-                    <form className="navbar-form navbar-right" role="login">
-                        <div className="form-group">
-                            <input type="text" className="form-control" placeholder="Email" onChange={this.updateEmailValue}/>
-                            <input type="password" className="form-control" placeholder="Password" onChange={this.updatePasswordValue}/>
-                            <button type="button"  onClick={this.login} className="btn btn-default btn-success">Login</button>
-                        </div>
-                    </form>
+                   {this.loginSection()}
                 </div>
             </nav>
         )
@@ -52,7 +65,7 @@ function mapStateToProps(state){
     return {user: state.user};
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
     return(
         {
             loginEmailEntered: function(email){dispatch({type: 'LOGIN_EMAIL_ENTERED', payload: email})},

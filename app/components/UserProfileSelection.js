@@ -2,9 +2,7 @@ import React from 'react'
 import Styles from '../styles'
 const homeStyle = Styles.home;
 
-
-export default class Home extends React.Component{
-
+export default class UserProfileSelection extends React.Component{
     render() {
         return (
             <div style={homeStyle.mainDiv}>
@@ -16,12 +14,7 @@ export default class Home extends React.Component{
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <h3>Your complete education toolkit in the cloud</h3>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h2>Coming Soon!</h2>
+                            <h3>Choose a profile!</h3>
                         </div>
                     </div>
                 </div>
