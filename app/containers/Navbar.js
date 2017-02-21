@@ -1,19 +1,19 @@
 import React from 'react'
 import Styles from '../styles'
 import { connect } from 'react-redux'
-import { loginUser } from '../actions/userActions'
-import { browserHistory } from 'react-router'
+import { loginUser, logoutUser } from '../actions/userActions'
 
 class Navbar extends React.Component{
     constructor(props) {
         super(props);
         this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
         this.updateEmailValue = this.updateEmailValue.bind(this);
         this.updatePasswordValue = this.updatePasswordValue.bind(this);
     }
 
     updateEmailValue(evt) {
-      this.props.loginEmailEntered(evt.target.value);
+        this.props.loginEmailEntered(evt.target.value);
     } 
 
     updatePasswordValue(evt) {
@@ -22,24 +22,33 @@ class Navbar extends React.Component{
 
     loginSection(){
         if (this.props.user.loggedIn){
-            return (<h4 className='navbar-text navbar-right'>Hello {this.props.user.firstName} {this.props.user.lastName}</h4>);
+            return (
+                <div className="form-group">
+                    <p className='navbar-text'>Hello {this.props.user.firstName} {this.props.user.lastName}</p>
+                    <button type="button"  onClick={this.logout} className="btn btn-default btn-success">Logout</button>
+                </div>
+            );
         }
         else{
             return ( 
-                <form className="navbar-form navbar-right" role="login">
-                    <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Email" onChange={this.updateEmailValue}/>
-                        <input type="password" className="form-control" placeholder="Password" onChange={this.updatePasswordValue}/>
-                        <button type="button"  onClick={this.login} className="btn btn-default btn-success">Login</button>
-                    </div>
-                </form>
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Email" onChange={this.updateEmailValue}/>
+                    <input type="password" className="form-control" placeholder="Password" onChange={this.updatePasswordValue}/>
+                    <button type="button"  onClick={this.login} className="btn btn-default btn-success">Login</button>
+                </div>
             );
         }
     }
-    
+
     login(e){
         this.props.loginUser(this.props.user.email, this.props.user.password);
     }
+
+    logout(e){
+        this.props.logoutUser(this.props.user.authToken);
+    }
+    
+
 
     render(){
            
@@ -54,7 +63,9 @@ class Navbar extends React.Component{
                         </a>
                         <h2 className='navbar-text'>EduKit</h2>
                     </div>
-                   {this.loginSection()}
+                    <form className="navbar-form navbar-right" role="login">
+                        {this.loginSection()}
+                    </form>
                 </div>
             </nav>
         )
@@ -70,7 +81,8 @@ function mapDispatchToProps(dispatch) {
         {
             loginEmailEntered: function(email){dispatch({type: 'LOGIN_EMAIL_ENTERED', payload: email})},
             loginPasswordEntered: function(password){dispatch({type: 'LOGIN_PASSWORD_ENTERED', payload: password})},
-            loginUser: function(email, password){dispatch((loginUser(email, password)))}
+            loginUser: function(email, password){dispatch(loginUser(email, password))},
+            logoutUser: function(authToken){dispatch(logoutUser(authToken))}
         }
     );
 }

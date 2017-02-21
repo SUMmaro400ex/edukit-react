@@ -13,7 +13,7 @@ const initialState = {
 export default function reducer(state = initialState, action){
     switch (action.type){
         case "LOGIN_SUCCESS":{
-            state =  {
+            return {
                  ...state, 
                 fetched: true,
                 fetching: false, 
@@ -27,32 +27,36 @@ export default function reducer(state = initialState, action){
                 email: action.payload.user.email,
                 userProfiles: action.payload.user_profiles 
             };
-            break;
         }
         case "LOGIN_ERROR":{
-            state =  {
+            return {
                 ...state, 
                 fetching: false, 
                 fetched: false, 
+                loggedIn: false, 
                 error: action.payload, 
                 authToken: null
-            };
-            break;
+            }
         }
         case "LOGIN_EMAIL_ENTERED":{
-            state = { ...state, email: action.payload};
-            break;
+            return { ...state, email: action.payload};
         }
         case "LOGIN_PASSWORD_ENTERED":{
-            state = { ...state, password: action.payload};
-            break;
+            return { ...state, password: action.payload};
         }
         case "GET_USER_PROFILES_SUCCESS":{
-            state = {
+            return {
                 ...state,
                 userProfiles: action.payload.userProfiles    
             }
         }
+        case "LOGOUT_SUCCESS":{
+            return initialState;
+        }
+        case "LOGOUT_ERROR":{
+            return {...state};
+        }
+        default: 
+            return state;
     }
-    return state;
 }

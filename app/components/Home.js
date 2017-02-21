@@ -2,9 +2,7 @@ import React from 'react'
 import Styles from '../styles'
 const homeStyle = Styles.home;
 
-
 export default class Home extends React.Component{
-
     render() {
         return (
             <div style={homeStyle.mainDiv}>

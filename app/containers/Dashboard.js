@@ -16,7 +16,6 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch) {
     return(
         {
-            getProfilesForUser: function(userId, token){dispatch((getProfilesForUser(userId, token)))}
         }    
     );
 }
