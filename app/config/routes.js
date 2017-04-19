@@ -6,6 +6,8 @@ import EnsureLoggedInContainer from '../containers/EnsureLoggedInContainer'
 import UserProfileSelection from '../components/UserProfileSelection'
 import Dashboard from '../containers/Dashboard'
 import NavbarContainer from '../containers/NavbarContainer'
+import CampusManagerContainer from '../containers/CampusManagerContainer'
+import SchedulerContainer from '../containers/SchedulerContainer'
 
 export default class Routes extends React.Component{
     render(){
@@ -16,6 +18,8 @@ export default class Routes extends React.Component{
                     <Route component={EnsureLoggedInContainer}>
                         <Route path='dashboard' component={Dashboard}/>
                         <Route path='select_profile' component={UserProfileSelection}/>
+                        <Route path='campus_manager' component={CampusManagerContainer}/>
+                        <Route path='scheduler' component={SchedulerContainer}/>
                     </Route>
                 </Route>
             </Router>
