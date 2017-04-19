@@ -1,5 +1,6 @@
 import React from 'react'
 import Styles from '../styles'
+import Login from '../components/Login'
 import { connect } from 'react-redux'
 import { loginUser, logoutUser } from '../actions/userActions'
 import { hashHistory } from 'react-router'
@@ -30,18 +31,10 @@ class LoginContainer extends React.Component{
 
     render() {
         return (
-
-          <div style={loginStyle.container}>
-            <div style={loginStyle.form} action="index.html" method="post">
-              <input type="text" placeholder="Email" onChange={this.updateEmailValue}
-              style={loginStyle.input}/>
-              <br/><br/>
-              <input type="password" placeholder="Password" onChange={this.updatePasswordValue}
-              style={loginStyle.input}/>
-              <br/><br/>
-              <input type="submit" value="Login" onClick={this.login}/>
-            </div>
-          </div>
+            <Login style={loginStyle} 
+            updateEmailValue={this.updateEmailValue} 
+            updatePasswordValue={this.updatePasswordValue}
+            login={this.login}/>
         )
     }
 }
@@ -59,7 +52,7 @@ function mapDispatchToProps(dispatch) {
         }
     );
 }
-
+    
 export default connect(
     mapStateToProps,
     mapDispatchToProps

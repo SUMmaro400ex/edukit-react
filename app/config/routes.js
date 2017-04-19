@@ -5,7 +5,6 @@ import HomeContainer from '../containers/HomeContainer'
 import EnsureLoggedInContainer from '../containers/EnsureLoggedInContainer'
 import UserProfileSelection from '../components/UserProfileSelection'
 import Dashboard from '../containers/Dashboard'
-import NavbarContainer from '../containers/NavbarContainer'
 import CampusManagerContainer from '../containers/CampusManagerContainer'
 import SchedulerContainer from '../containers/SchedulerContainer'
 
