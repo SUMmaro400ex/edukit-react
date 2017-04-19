@@ -1,13 +1,11 @@
 import React from 'react'
-import Navbar from '../containers/navbar'
 
 export default class Main extends React.Component{
-    render(){
+    render() {
         return (
-            <div>
-                <Navbar />
-                {this.props.children}
-            </div>
+            <p>
+                You probably shouldn't be seeing this page
+            </p>
         )
-    } 
+    }
 }

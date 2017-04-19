@@ -1,30 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
-import Home from '../components/Home'
-
+import LoginContainer from '../containers/LoginContainer'
+import NavbarContainer from '../containers/NavbarContainer'
 
 class HomeContainer extends React.Component{
 
-    componentDidUpdate(){
-        let profiles = this.props.user.userProfiles;
-        if (profiles && profiles.length == 1) {
-            hashHistory.push('/dashboard');
-        }
-        else if (profiles && profiles.length > 1){
-            hashHistory.push('/select_profile');
-        }    
-    }
-
     render() {
-        return (
-            <Home />
-        )
+        if (this.props.isLoggedIn) {
+            return(
+                <div>
+                    <NavbarContainer />
+                    {this.props.children}
+                </div>
+            )
+        }
+        else {
+            return (<LoginContainer />)
+        }
     }
 }
 
 function mapStateToProps(state){
-    return {user: state.user};
+    return {
+        isLoggedIn: state.user.loggedIn,
+        user: state.user
+    };
 }
 
 export default connect(mapStateToProps)(HomeContainer);

@@ -12,12 +12,11 @@ var styles = {
             marginTop: 10
         }
     },
-    home:{
+    login:{
         mainDiv:{
             textAlign: 'center',
             height: '90vh', 
-            width: '100%', 
-            backgroundImage: 'url(http://lightersideofrealestate.com/wp-content/uploads/2014/09/clouds-background-light.jpg)'
+            width: '100%'
         }
     }
 };

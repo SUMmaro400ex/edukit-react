@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 
 class EnsureLoggedInContainer extends React.Component {
+  
   componentDidMount() {
     if (!this.props.isLoggedIn) {
       hashHistory.push("/")
