@@ -32,7 +32,7 @@ class LoginContainer extends React.Component{
         return (
 
           <div style={loginStyle.container}>
-            <form style={loginStyle.form} action="index.html" method="post">
+            <div style={loginStyle.form} action="index.html" method="post">
               <input type="text" placeholder="Email" onChange={this.updateEmailValue}
               style={loginStyle.input}/>
               <br/><br/>
@@ -40,7 +40,7 @@ class LoginContainer extends React.Component{
               style={loginStyle.input}/>
               <br/><br/>
               <input type="submit" value="Login" onClick={this.login}/>
-            </form>
+            </div>
           </div>
         )
     }
