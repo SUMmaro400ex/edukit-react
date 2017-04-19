@@ -18,7 +18,7 @@ class LoginContainer extends React.Component{
 
     updateEmailValue(evt) {
         this.props.loginEmailEntered(evt.target.value);
-    } 
+    }
 
     updatePasswordValue(evt) {
         this.props.loginPasswordEntered(evt.target.value);
@@ -30,13 +30,18 @@ class LoginContainer extends React.Component{
 
     render() {
         return (
-              <div style={loginStyle.mainDiv}>
-                <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Email" onChange={this.updateEmailValue}/>
-                    <input type="password" className="form-control" placeholder="Password" onChange={this.updatePasswordValue}/>
-                    <button type="button"  onClick={this.login} className="btn btn-default btn-success">Login</button>
-                </div>
-            </div>
+
+          <div style={loginStyle.container}>
+            <form style={loginStyle.form} action="index.html" method="post">
+              <input type="text" placeholder="Email" onChange={this.updateEmailValue}
+              style={loginStyle.input}/>
+              <br/><br/>
+              <input type="password" placeholder="Password" onChange={this.updatePasswordValue}
+              style={loginStyle.input}/>
+              <br/><br/>
+              <input type="submit" value="Login" onClick={this.login}/>
+            </form>
+          </div>
         )
     }
 }
@@ -56,6 +61,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-    mapStateToProps, 
+    mapStateToProps,
     mapDispatchToProps
 )(LoginContainer);
