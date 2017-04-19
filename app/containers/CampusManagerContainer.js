@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-class CampusManagementContainer extends React.Component{
+class CampusManagerContainer extends React.Component{
 
     render() {
-        return (<h1>Campus Management</h1>)
+        return (<h1>Campus Manager</h1>)
     }
 }
 
@@ -22,4 +22,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps, 
     mapDispatchToProps
-)(CampusManagementContainer);
+)(CampusManagerContainer);

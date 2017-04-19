@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { hashHistory } from 'react-router'
 import LoginContainer from '../containers/LoginContainer'
 import NavbarContainer from '../containers/NavbarContainer'
 
