@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
-import Main from '../components/Main'
+import Main from './Main'
 
 class MainContainer extends React.Component{
     

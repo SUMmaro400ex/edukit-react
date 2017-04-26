@@ -1,6 +1,4 @@
 import React from 'react'
-import Styles from '../styles'
-const homeStyle = Styles.home;
 
 export default class UserProfileSelection extends React.Component{
     render() {

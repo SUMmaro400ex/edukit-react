@@ -1,12 +1,12 @@
 import React from 'react'
 import {Router, Route, hashHistory, IndexRoute} from 'react-router'
-import MainContainer from '../containers/MainContainer'
-import HomeContainer from '../containers/HomeContainer'
-import EnsureLoggedInContainer from '../containers/EnsureLoggedInContainer'
-import UserProfileSelection from '../components/UserProfileSelection'
-import Dashboard from '../containers/Dashboard'
-import CampusManagerContainer from '../containers/CampusManagerContainer'
-import SchedulerContainer from '../containers/SchedulerContainer'
+import MainContainer from '../src/main'
+import HomeContainer from '../src/home'
+import EnsureLoggedInContainer from '../src/ensure_logged_in'
+import UserProfileSelection from '../src/user_profile_selection/UserProfileSelection'
+import DashboardContainer from '../src/dashboard'
+import CampusManagerContainer from '../src/campus_manager'
+import SchedulerContainer from '../src/scheduler'
 
 export default class Routes extends React.Component{
     render(){
@@ -15,7 +15,7 @@ export default class Routes extends React.Component{
                 <Route path='/' component={HomeContainer} >
                     <IndexRoute component={MainContainer}/>
                     <Route component={EnsureLoggedInContainer}>
-                        <Route path='dashboard' component={Dashboard}/>
+                        <Route path='dashboard' component={DashboardContainer}/>
                         <Route path='select_profile' component={UserProfileSelection}/>
                         <Route path='campus_manager' component={CampusManagerContainer}/>
                         <Route path='scheduler' component={SchedulerContainer}/>

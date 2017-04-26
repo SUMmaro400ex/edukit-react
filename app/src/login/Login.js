@@ -1,5 +1,4 @@
 import React from 'react'
-import Styles from '../styles'
 
 export default class Navbar extends React.Component{
     render(){

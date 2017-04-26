@@ -1,5 +1,6 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from './Navbar'
+import styles from './styles'
 import { connect } from 'react-redux'
 import { logoutUser } from '../actions/userActions'
 
@@ -17,7 +18,10 @@ class NavbarContainer extends React.Component{
 
     render(){   
         return (
-            <Navbar logout={this.logout} firstName={this.props.user.firstName} lastName={this.props.user.lastLast} />
+            <Navbar logout={this.logout} 
+            firstName={this.props.user.firstName} 
+            lastName={this.props.user.lastLast} 
+            styles={styles}/>
         )
     } 
 }

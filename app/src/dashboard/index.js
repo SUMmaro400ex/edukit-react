@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
-import { getProfilesForUser } from '../actions/userProfileActions'
+import { getProfilesForUser } from '../../actions/userProfileActions'
+import Dashboard from './Dashboard'
 
-class Dashboard extends React.Component{
+class DashboardContainer extends React.Component{
 
     openCampusManager(e){
         hashHistory.push('/campus_manager')
@@ -15,11 +16,8 @@ class Dashboard extends React.Component{
 
     render() {
         return (
-            <div>
-                <button className='btn btn-default btn-success'onClick={this.openCampusManager}>Open Campus Manager</button>
-                <br/><br/>
-                <button className='btn btn-default btn-success' onClick={this.openScheduler}>Open Scheduler</button>
-            </div>
+          <Dashboard openCampusManager={this.openCampusManager} 
+          openScheduler={this.openScheduler}/>
         )
     }
 }
@@ -38,4 +36,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps, 
     mapDispatchToProps
-)(Dashboard);
+)(DashboardContainer);

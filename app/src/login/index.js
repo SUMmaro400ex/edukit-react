@@ -1,12 +1,9 @@
 import React from 'react'
-import Styles from '../styles'
-import Login from '../components/Login'
+import styles from './styles'
+import Login from './Login'
 import { connect } from 'react-redux'
 import { loginUser, logoutUser } from '../actions/userActions'
 import { hashHistory } from 'react-router'
-
-
-const loginStyle = Styles.login;
 
 class LoginContainer extends React.Component{
 
@@ -31,7 +28,7 @@ class LoginContainer extends React.Component{
 
     render() {
         return (
-            <Login style={loginStyle} 
+            <Login style={styles} 
             updateEmailValue={this.updateEmailValue} 
             updatePasswordValue={this.updatePasswordValue}
             login={this.login}/>

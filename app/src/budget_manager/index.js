@@ -1,10 +1,11 @@
 import React from 'react'
+import BudgetManager from './BudgetManager'
 import { connect } from 'react-redux'
 
-class CampusManagerContainer extends React.Component{
+class BudgetManagerContainer extends React.Component{
 
     render() {
-        return (<h1>Campus Manager</h1>)
+        return (<BudgetManager />)
     }
 }
 
@@ -22,4 +23,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps, 
     mapDispatchToProps
-)(CampusManagerContainer);
+)(BudgetManagerContainer);
