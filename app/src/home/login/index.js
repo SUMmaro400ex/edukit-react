@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './styles'
 import Login from './Login'
 import { connect } from 'react-redux'
-import { loginUser, logoutUser } from '../actions/userActions'
+import { loginUser, logoutUser } from '../actions'
 import { hashHistory } from 'react-router'
 
 class LoginContainer extends React.Component{

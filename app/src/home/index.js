@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import LoginContainer from '../login'
-import NavbarContainer from '../navbar'
+import LoginContainer from './login'
+import NavbarContainer from './navbar'
 
 class HomeContainer extends React.Component{
 

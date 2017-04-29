@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
-import { getProfilesForUser } from '../../actions/userProfileActions'
+import { getProfilesForUser } from './actions'
 import Dashboard from './Dashboard'
 
 class DashboardContainer extends React.Component{

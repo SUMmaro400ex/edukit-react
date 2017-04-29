@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import styles from './styles'
 import { connect } from 'react-redux'
-import { logoutUser } from '../actions/userActions'
+import { logoutUser } from '../actions'
 
 
 class NavbarContainer extends React.Component{
