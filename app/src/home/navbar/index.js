@@ -19,8 +19,7 @@ class NavbarContainer extends React.Component{
     render(){   
         return (
             <Navbar logout={this.logout} 
-            firstName={this.props.user.firstName} 
-            lastName={this.props.user.lastLast} 
+            userState={this.props.user}
             styles={styles}/>
         )
     } 

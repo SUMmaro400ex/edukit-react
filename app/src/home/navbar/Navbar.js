@@ -16,7 +16,7 @@ export default class Navbar extends React.Component{
                         </div>
                         <div className="navbar-form navbar-right">
                             <div className="form-group">
-                                <p className='navbar-text'>Hello {this.props.firstName} {this.props.lastName}</p>
+                                <p className='navbar-text'>Hello {this.props.userState.firstName} {this.props.userState.lastName}</p>
                                 <button type="button"  onClick={this.props.logout} className="btn btn-default btn-success">Logout</button>
                             </div>
                         </div>

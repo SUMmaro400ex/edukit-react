@@ -1,11 +1,12 @@
 import React from 'react'
 import TAManager from './TAManager'
+import styles from '../styles'
 import { connect } from 'react-redux'
 
 class TAManagerContainer extends React.Component{
 
     render() {
-        return (<TAManager />)
+        return (<TAManager styles={styles}/>)
     }
 }
 

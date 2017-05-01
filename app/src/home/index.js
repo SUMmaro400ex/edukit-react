@@ -15,7 +15,9 @@ class HomeContainer extends React.Component{
             )
         }
         else {
-            return (<LoginContainer />)
+            return (
+                <LoginContainer />
+            )
         }
     }
 }
