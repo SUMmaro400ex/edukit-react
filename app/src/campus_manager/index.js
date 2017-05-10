@@ -1,7 +1,5 @@
 import React from 'react'
 import CampusManager from './CampusManager'
-import BudgetManagerContainer from './budget_manager'
-import TAManagerContainer from './ta_manager'
 import styles from './styles'
 
 import { connect } from 'react-redux'

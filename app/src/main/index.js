@@ -6,7 +6,11 @@ import Main from './Main'
 class MainContainer extends React.Component{
     
     componentWillMount(){
-       let profiles = this.props.user.userProfiles;
+       this.route();
+    }
+
+    route(){
+        let profiles = this.props.user.userProfiles;
         if (profiles && profiles.length == 1) {
             hashHistory.push('/dashboard');
         }
@@ -14,14 +18,9 @@ class MainContainer extends React.Component{
             hashHistory.push('/select_profile');
         } 
     }
+
     componentDidUpdate(){
-        let profiles = this.props.user.userProfiles;
-        if (profiles && profiles.length == 1) {
-            hashHistory.push('/dashboard');
-        }
-        else if (profiles && profiles.length > 1){
-            hashHistory.push('/select_profile');
-        }    
+        this.route();  
     }
 
     render(){
@@ -32,6 +31,13 @@ function mapStateToProps(state){
     return {
         user: state.user
     };
+}
+
+function mapDispatchToProps(dispatch) {
+    return(
+        {
+        }
+    );
 }
 
 export default connect(mapStateToProps)(MainContainer);

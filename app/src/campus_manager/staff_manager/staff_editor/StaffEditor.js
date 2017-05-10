@@ -1,19 +1,29 @@
 import React from 'react'
 import {Form, FormGroup, Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 
-export default class TAEditor extends React.Component{
+export default class StaffEditor extends React.Component{
     render(){
         return (
             <div>
-                <h2>{this.props.action} TA </h2>
+                <h2>{this.props.action} Staff </h2>
                 <div className="management">
                     <Form horizontal>
+                        <FormGroup controlId="formControlsSelect">
+                            <Col componentClass={ControlLabel} smOffset={1} sm={3}>
+                                Staff Type
+                            </Col>
+                            <Col sm={6}>
+                                <FormControl componentClass="select" placeholder="select">
+                                    {this.props.roles}
+                                </FormControl>
+                            </Col>
+                        </FormGroup>
                         <FormGroup controlId="formHorizontalFirstName">
                             <Col componentClass={ControlLabel} smOffset={1} sm={3}>
                                 First Name
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="firstname" placeholder="Enter First Name"/>
+                                <FormControl type="firstname" placeholder="Enter First Name" onChange={this.props.updateField} defaultValue={this.props.staff.firstName}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalLastName">
@@ -21,7 +31,7 @@ export default class TAEditor extends React.Component{
                                 Last Name
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="lastName" placeholder="Enter Last Name"/>
+                                <FormControl type="lastName" placeholder="Enter Last Name" onChange={this.props.updateField}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalEmail">
@@ -29,7 +39,7 @@ export default class TAEditor extends React.Component{
                                 Email
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="email" placeholder="Enter Email"/>
+                                <FormControl type="email" placeholder="Enter Email" onChange={this.props.updateField}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalPassword">
@@ -37,7 +47,7 @@ export default class TAEditor extends React.Component{
                                 Password
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="password" placeholder="Enter Password"/>
+                                <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalPasswordConfirmation">
@@ -45,7 +55,7 @@ export default class TAEditor extends React.Component{
                                 Password Confirmation
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="password" placeholder="Enter Password"/>
+                                <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalHourly">
@@ -53,13 +63,13 @@ export default class TAEditor extends React.Component{
                                 Hourly Rate
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="money" placeholder="Enter Hourly Rate"/>
+                                <FormControl type="money" placeholder="Enter Hourly Rate" onChange={this.props.updateField}/>
                             </Col>
                         </FormGroup>
                         <FormGroup>
                             <Col sm={4} />
                             <Col sm={1}>
-                                <Button bsStyle="success" type="submit">
+                                <Button bsStyle="success" type="submit" onClick={this.props.submit}>
                                     Submit
                                 </Button>
                             </Col>

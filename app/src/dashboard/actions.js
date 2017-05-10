@@ -14,3 +14,18 @@ export function getProfilesForUser(userId, token)
         })
     }
 }
+
+export function frontLoadData(userProfileId, authToken)
+{
+    return function(dispatch){
+        const url = `http://localhost:3000/front_load_session_data.json/?user_profile_id=${userProfileId}`;
+        axios.get(url, {headers: {Authorization: authToken}})
+        .then((response) => {
+           dispatch({type: 'FRONT_LOAD_DATA_SUCCESS', payload: response.data})
+        })
+        .catch((err) =>{
+            alert('Something went wrong. Please try again.')
+            dispatch({type: 'FRONT_LOAD_DATA_FAILED', payload: err})
+        })
+    }
+}

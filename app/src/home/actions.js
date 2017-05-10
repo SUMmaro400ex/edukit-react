@@ -23,7 +23,7 @@ export function logoutUser(authToken)
         const url = 'http://localhost:3000/logout.json/'
         axios.get(url, {headers: {Authorization: authToken}})
         .then((response) => {
-            dispatch({type: 'LOGOUT_SUCCESS', payload: response.data})
+            dispatch({type: 'RESET_STATE', payload: response.data})
         })
         .then((e) =>{
            hashHistory.push('/'); 

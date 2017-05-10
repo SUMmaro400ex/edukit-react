@@ -50,7 +50,7 @@ export default function reducer(state = initialState, action){
                 userProfiles: action.payload.userProfiles    
             }
         }
-        case "LOGOUT_SUCCESS":{
+        case "RESET_STATE":{
             return initialState;
         }
         case "LOGOUT_ERROR":{
