@@ -1,12 +1,16 @@
 import axios from 'axios';
 import { hashHistory } from 'react-router'
 
-export function submit(email, password)
+export function submit(staff, authToken)
 { 
     return function(dispatch){
-        axios.post('http://localhost:3000/login.json', {
-            email: email,
-            password: password
+        axios.post('http://localhost:3000/users.json', {
+            headers:{
+                Authorization: authToken
+            },
+            body:{
+                staff: staff
+            }
         })
         .then((response) => {
             dispatch({type: 'TA_SUBMISSION_SUCCESS', payload: response.data})

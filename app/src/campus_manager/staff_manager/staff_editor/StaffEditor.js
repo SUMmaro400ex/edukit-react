@@ -31,7 +31,7 @@ export default class StaffEditor extends React.Component{
                                 Last Name
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="lastName" placeholder="Enter Last Name" onChange={this.props.updateField}/>
+                                <FormControl type="lastName" placeholder="Enter Last Name" onChange={this.props.updateField} defaultValue={this.props.staff.lastName}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalEmail">
@@ -39,7 +39,7 @@ export default class StaffEditor extends React.Component{
                                 Email
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="email" placeholder="Enter Email" onChange={this.props.updateField}/>
+                                <FormControl type="email" placeholder="Enter Email" onChange={this.props.updateField} defaultValue={this.props.staff.email}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalPassword">
@@ -47,7 +47,7 @@ export default class StaffEditor extends React.Component{
                                 Password
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField}/>
+                                <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField} defaultValue={this.props.staff.password}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalPasswordConfirmation">
@@ -55,7 +55,7 @@ export default class StaffEditor extends React.Component{
                                 Password Confirmation
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField}/>
+                                <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField} defaultValue={this.props.staff.passwordConfirmation}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalHourly">
@@ -63,7 +63,7 @@ export default class StaffEditor extends React.Component{
                                 Hourly Rate
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="money" placeholder="Enter Hourly Rate" onChange={this.props.updateField}/>
+                                <FormControl type="money" placeholder="Enter Hourly Rate" onChange={this.props.updateField} defaultValue={this.props.staff.hourly}/>
                             </Col>
                         </FormGroup>
                         <FormGroup>

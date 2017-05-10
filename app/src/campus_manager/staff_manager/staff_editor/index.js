@@ -35,6 +35,10 @@ class StaffEditorContainer extends React.Component{
                 this.passwordConfirmationChanged(evt.target.value);
                 break;
             }
+            case 'formHorizontalHourly':{
+                this.hourlyChanged(evt.target.value);
+                break;
+            }
         }
     }
 
@@ -50,7 +54,7 @@ class StaffEditorContainer extends React.Component{
         if (this.props.action === 'Add'){
             this.props.newStaffLastNameEntered(lastName);
         }else{
-            // this.props.editingStaffFirstNameEntered(evt.target.value);
+            this.props.editingStaffLastNameEntered(lastName);
         }
     }
 
@@ -58,7 +62,7 @@ class StaffEditorContainer extends React.Component{
         if (this.props.action === 'Add'){
             this.props.newStaffEmailEntered(email);
         }else{
-            // this.props.editingStaffFirstNameEntered(evt.target.value);
+            this.props.editingStaffEmailEntered(email);
         }
     }
 
@@ -66,21 +70,28 @@ class StaffEditorContainer extends React.Component{
         if (this.props.action === 'Add'){
             this.props.newStaffPasswordEntered(password);
         }else{
-            // this.props.editingStaffFirstNameEntered(evt.target.value);
+            this.props.editingStaffPasswordEntered(password);
         }
     }
 
-    passwordConfirmationChanged(password){
+    passwordConfirmationChanged(passworConfirmation){
         if (this.props.action === 'Add'){
-            this.props.newStaffPasswordConfirmationEntered(password);
+            this.props.newStaffPasswordConfirmationEntered(passworConfirmation);
         }else{
-            // this.props.editingStaffFirstNameEntered(evt.target.value);
+            this.props.editingStaffPasswordConfirmationEntered(passworConfirmation);
+        }
+    }
+
+    hourlyChanged(hourly){
+        if (this.props.action === 'Add'){
+            this.props.newStaffHourlyEntered(hourly);
+        }else{
+            this.props.editingStaffHourlyEntered(hourly);
         }
     }
 
     submit(e){
-        debugger
-        this.props.submit(this.props.user.email, this.props.user.password);
+        this.props.submit(this.props.newStaff, this.props.user.authToken);
     }
 
     roles(){
@@ -104,6 +115,8 @@ function mapStateToProps(state){
     return {
         user: state.user,
         sessionData: state.sessionData,
+        newStaff: state.staffEditor.newStaff,
+        currentStaff: state.staffEditor.currentStaff
     }
 }
 
@@ -113,10 +126,16 @@ function mapDispatchToProps(dispatch) {
             newStaffFirstNameEntered: function(firstName){dispatch({type: 'NEW_STAFF_FIRST_NAME_ENTERED', payload: firstName})},
             editingStaffFirstNameEntered: function(firstName){dispatch({type: 'CURRENT_STAFF_FIRST_NAME_ENTERED', payload: firstName})},
             newStaffLastNameEntered: function(lastName){dispatch({type: 'NEW_STAFF_LAST_NAME_ENTERED', payload: lastName})},
+            editingStaffLastNameEntered: function(lastName){dispatch({type: 'CURRENT_STAFF_LAST_NAME_ENTERED', payload: lastName})},
             newStaffEmailEntered: function(email){dispatch({type: 'NEW_STAFF_EMAIL_ENTERED', payload: email})},
+            editingStaffEmailEntered: function(email){dispatch({type: 'CURRENT_STAFF_EMAIL_ENTERED', payload: email})},
             newStaffPasswordEntered: function(password){dispatch({type: 'NEW_STAFF_PASSWORD_ENTERED', payload: password})},
-            newStaffPasswordConfirmationEntered: function(password){dispatch({type: 'NEW_STAFF_PASSWORD_CONFIRMATION_ENTERED', payload: password})},
-            submit: function(email, password){dispatch(submit(email, password))},
+            editingStaffPasswordEntered: function(password){dispatch({type: 'CURRENT_STAFF_PASSWORD_ENTERED', payload: password})},
+            newStaffPasswordConfirmationEntered: function(passwordConfirmation){dispatch({type: 'NEW_STAFF_PASSWORD_CONFIRMATION_ENTERED', payload: passwordConfirmation})},
+            editingStaffPasswordConfirmationEntered: function(passwordConfirmation){dispatch({type: 'CURRENT_STAFF_PASSWORD_CONFIRMATION_ENTERED', payload: passwordConfirmation})},
+            newStaffHourlyEntered: function(hourly){dispatch({type: 'NEW_STAFF_HOURLY_ENTERED', payload: hourly})},
+            editingStaffHourlyEntered: function(hourly){dispatch({type: 'CURRENT_STAFF_HOURLY_ENTERED', payload: hourly})},
+            submit: function(staff, authToken){dispatch(submit(staff, authToken))},
         }   
     );
 }
