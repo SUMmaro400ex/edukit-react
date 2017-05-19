@@ -13,7 +13,7 @@ export default class StaffEditor extends React.Component{
                                 Staff Type
                             </Col>
                             <Col sm={6}>
-                                <FormControl componentClass="select" placeholder="select">
+                                <FormControl componentClass="select" placeholder="select" onChange={this.props.updateField}>
                                     {this.props.roles}
                                 </FormControl>
                             </Col>

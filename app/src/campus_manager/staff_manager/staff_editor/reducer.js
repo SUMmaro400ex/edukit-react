@@ -5,7 +5,8 @@ const initialState = {
         email: null,
         passwordConfirmation: null,
         password: null,
-        hourly:null
+        hourly:null,
+        type: null
     },
     currentStaff:{
         firstName: null,
@@ -13,7 +14,8 @@ const initialState = {
         email: null,
         passwordConfirmation: null,
         password: null,
-        hourly:null
+        hourly:null,
+        type: null
     }
     
 }
@@ -124,6 +126,24 @@ export default function reducer(state = initialState, action){
                  currentStaff:{
                      ...state.currentStaff,
                      hourly: action.payload
+                 }
+            };
+        }
+        case "NEW_STAFF_TYPE_ENTERED":{
+            return {
+                 ...state, 
+                 newStaff:{
+                     ...state.newStaff,
+                     type: action.payload
+                 }
+            };
+        }
+        case "CURRENT_STAFF_TYPE_ENTERED":{
+            return {
+                 ...state, 
+                 currentStaff:{
+                     ...state.currentStaff,
+                     type: action.payload
                  }
             };
         }

@@ -39,6 +39,10 @@ class StaffEditorContainer extends React.Component{
                 this.hourlyChanged(evt.target.value);
                 break;
             }
+            case 'formControlsSelect':{
+                this.staffTypeChanged(evt.target.value);
+                break;
+            }
         }
     }
 
@@ -90,8 +94,16 @@ class StaffEditorContainer extends React.Component{
         }
     }
 
+    staffTypeChanged(type){
+        if (this.props.action === 'Add'){
+            this.props.newStaffTypeEntered(type);
+        }else{
+            this.props.editingStaffTypeEntered(type);
+        }
+    }
+
     submit(e){
-        this.props.submit(this.props.newStaff, this.props.user.authToken);
+        this.props.submit(this.props.newStaff, this.props.user.authToken, this.props.sessionData.businessEntity.id);
     }
 
     roles(){
@@ -135,7 +147,9 @@ function mapDispatchToProps(dispatch) {
             editingStaffPasswordConfirmationEntered: function(passwordConfirmation){dispatch({type: 'CURRENT_STAFF_PASSWORD_CONFIRMATION_ENTERED', payload: passwordConfirmation})},
             newStaffHourlyEntered: function(hourly){dispatch({type: 'NEW_STAFF_HOURLY_ENTERED', payload: hourly})},
             editingStaffHourlyEntered: function(hourly){dispatch({type: 'CURRENT_STAFF_HOURLY_ENTERED', payload: hourly})},
-            submit: function(staff, authToken){dispatch(submit(staff, authToken))},
+            newStaffTypeEntered: function(type){dispatch({type: 'NEW_STAFF_TYPE_ENTERED', payload: type})},
+            editingStaffTypeEntered: function(type){dispatch({type: 'CURRENT_STAFF_TYPE_ENTERED', payload: type})},
+            submit: function(staff, authToken, businessEntityId){dispatch(submit(staff, authToken, businessEntityId))},
         }   
     );
 }

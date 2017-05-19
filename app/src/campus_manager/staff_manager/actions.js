@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { hashHistory } from 'react-router'
 
-export function submit(staff, authToken)
+export function submit(staff, authToken, businessEntityId)
 { 
     return function(dispatch){
         axios.post('http://localhost:3000/users.json', {
@@ -9,7 +9,8 @@ export function submit(staff, authToken)
                 Authorization: authToken
             },
             body:{
-                staff: staff
+                staff: staff,
+                businessEntityId: businessEntityId
             }
         })
         .then((response) => {
