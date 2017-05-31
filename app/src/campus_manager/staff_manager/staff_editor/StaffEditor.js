@@ -50,7 +50,8 @@ export default class StaffEditor extends React.Component{
                                 <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField} defaultValue={this.props.staff.password}/>
                             </Col>
                         </FormGroup>
-                        <FormGroup controlId="formHorizontalPasswordConfirmation">
+                        <FormGroup controlId="formHorizontalPasswordConfirmation"
+                            validationState={this.props.passwordConfirmationValidationState()}>
                             <Col componentClass={ControlLabel} smOffset={1} sm={3}>
                                 Password Confirmation
                             </Col>

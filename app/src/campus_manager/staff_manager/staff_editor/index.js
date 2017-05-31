@@ -10,6 +10,15 @@ class StaffEditorContainer extends React.Component{
         super(props);
         this.submit = this.submit.bind(this);
         this.updateField = this.updateField.bind(this);
+        this.getPasswordConfirmationValidationState = this.getPasswordConfirmationValidationState.bind(this);
+    }
+
+    getPasswordConfirmationValidationState() {
+        if (this.props.staff.password === this.props.staff.passworConfirmation){
+            return 'success';
+        }else{
+            return 'error';
+        }
     }
 
     updateField(evt) {
@@ -114,7 +123,8 @@ class StaffEditorContainer extends React.Component{
             )
     }
     render() {
-        return (<StaffEditor roles={this.roles()} 
+        return (<StaffEditor roles={this.roles()}
+                passwordConfirmationValidationState={this.getPasswordConfirmationValidationState}
                 styles={styles} 
                 staff={this.props.staff}
                 action={this.props.action}
