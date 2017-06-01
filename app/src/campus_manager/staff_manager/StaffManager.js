@@ -1,15 +1,16 @@
 import React from 'react'
-import StaffEditorContainer from './staff_editor'
+import NewStaffEditorContainer from './staff_editor/NewStaffEditorContainer'
+import CurrentStaffEditorContainer from './staff_editor/CurrentStaffEditorContainer'
 import {Nav, NavItem, Col, Tab, Row} from 'react-bootstrap'
 
 export default class StaffManager extends React.Component{
     render(){
-        let {sessionData} = this.props;
+        let {sessionData, newStaff, currentStaff, styles} = this.props;
         return (
             <div>
                 <Tab.Container id="left-tabs-example" defaultActiveKey='addStaff'>
                     <Row className="clearfix">
-                    <Col sm={2} style={this.props.styles.navColumn}>
+                    <Col sm={2} style={styles.navColumn}>
                         <h3>Staff Manager</h3>
                         <Nav bsStyle="pills" stacked>
                             <NavItem eventKey='addStaff' >
@@ -23,10 +24,10 @@ export default class StaffManager extends React.Component{
                     <Col sm={8}>
                         <Tab.Content animation>
                         <Tab.Pane eventKey='addStaff'>
-                            <StaffEditorContainer sessionData={sessionData} action='Add' staff={this.props.newStaff}/>
+                            <NewStaffEditorContainer sessionData={sessionData} staff={newStaff}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey='editStaff'>
-                            <StaffEditorContainer sessionData={sessionData} action='Edit'staff={this.props.currentStaff}/>
+                            <CurrentStaffEditorContainer sessionData={sessionData} staff={currentStaff}/>
                         </Tab.Pane>
                         </Tab.Content>
                     </Col>
