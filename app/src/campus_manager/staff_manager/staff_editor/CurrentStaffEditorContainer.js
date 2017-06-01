@@ -1,6 +1,6 @@
 import React from 'react'
 import StaffEditor from './StaffEditor'
-import styles from '../../styles'
+import styles from './styles'
 import { connect } from 'react-redux'
 import { submit } from '../actions'
 
