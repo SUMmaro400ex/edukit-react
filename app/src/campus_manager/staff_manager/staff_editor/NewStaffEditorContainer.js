@@ -1,6 +1,6 @@
 import React from 'react'
 import StaffEditor from './StaffEditor'
-import styles from '../../styles'
+import styles from './styles'
 import { connect } from 'react-redux'
 import { submit } from '../actions'
 
@@ -11,43 +11,41 @@ class NewStaffEditorContainer extends React.Component{
         this.submit = this.submit.bind(this);
         this.updateField = this.updateField.bind(this);
         this.getPasswordConfirmationValidationState = this.getPasswordConfirmationValidationState.bind(this);
+        this.passwordValidationState = this.passwordValidationState.bind(this);
     }
 
     getPasswordConfirmationValidationState() {
         let {staff} = this.props;
-        return staff.password === staff.passwordConfirmation ? 'success' : 'error';
+        if (staff.password === staff.passwordConfirmation && staff.password.length >= 6){
+            return 'success';
+        }else if (staff.password !== staff.passwordConfirmation){
+            return 'error';
+        }else{
+            return null;
+        }
+    }
+
+    passwordValidationState(){
+        let {staff} = this.props;
+        if (staff.password.length >= 6){
+            return 'success';
+        }else if (this.props.staff.password){
+            return 'error';
+        }else{
+            return null;
+        }
     }
 
     updateField(evt) {
+        let {firstNameEntered, lastNameEntered, emailEntered, passwordEntered, passwordConfirmationEntered, hourlyEntered, typeEntered} = this.props;
         switch(evt.target.id){
-            case 'formHorizontalFirstName':{
-                this.props.firstNameEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalLastName':{
-                this.props.lastNameEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalEmail':{
-                this.props.emailEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalPassword':{
-                this.props.passwordEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalPasswordConfirmation':{
-                this.props.passwordConfirmationEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalHourly':{
-                this.props.hourlyEntered(evt.target.value);
-                break;
-            }
-            case 'formControlsSelect':{
-                this.props.typeEntered(evt.target.value);
-                break;
-            }
+            case 'formHorizontalFirstName':{firstNameEntered(evt.target.value);break;}
+            case 'formHorizontalLastName':{lastNameEntered(evt.target.value);break;}
+            case 'formHorizontalEmail':{emailEntered(evt.target.value);break;}
+            case 'formHorizontalPassword':{passwordEntered(evt.target.value);break;}
+            case 'formHorizontalPasswordConfirmation':{passwordConfirmationEntered(evt.target.value);break;}
+            case 'formHorizontalHourly':{hourlyEntered(evt.target.value);break;}
+            case 'formControlsSelect':{typeEntered(evt.target.value);break;}
         }
     }
 
@@ -65,9 +63,10 @@ class NewStaffEditorContainer extends React.Component{
     render() {
         return (<StaffEditor roles={this.roles()}
                 passwordConfirmationValidationState={this.getPasswordConfirmationValidationState}
+                passwordValidationState={this.passwordValidationState}
                 styles={styles} 
                 staff={this.props.staff}
-                action={this.props.action}
+                action="Add"
                 submit={this.submit}
                 updateField={this.updateField}/>)
     }

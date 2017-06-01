@@ -2,10 +2,84 @@ import React from 'react'
 import {Form, FormGroup, Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 
 export default class StaffEditor extends React.Component{
+
+    passwordsMustMatch(){
+        return (
+            !this.passwordsMatch() &&
+                <FormGroup>
+                    <Col smOffset={1} sm={3}/>
+                    <Col sm={6} style={this.props.styles.validationError}>
+                        Passwords Must Match
+                        <br/>
+                    </Col>
+                </FormGroup>
+            )
+    }
+
+    passwordsLengthShort(){
+        return (
+            !this.passwordMinimumLength() &&
+                <FormGroup>
+                    <Col smOffset={1} sm={3}/>
+                    <Col sm={6} style={this.props.styles.validationError}>
+                        Password Too Short
+                        <br/>
+                    </Col>
+                </FormGroup>
+            )
+    }
+
+    passwordsMatch(){
+        return(this.props.passwordConfirmationValidationState() !== "error")
+    }
+
+    passwordMinimumLength(){
+        return(this.props.staff.password.length >= 6 || !this.props.staff.password)
+    }
+
+    submitButton(){
+        let {submit, styles, staff} = this.props;
+        let {firstName, lastName, email, password, passwordConfirmation, hourly} = staff;
+        let requiredFieldsComplete = !!firstName && !!lastName && !!email && !!password && !!passwordConfirmation && !!hourly
+        let enabled = requiredFieldsComplete && this.passwordsMatch() && this.passwordMinimumLength()
+        return(
+            <div>
+                <FormGroup>
+                    <Col sm={4} />
+                    <Col sm={1}>
+                        <Button bsStyle="success" type="submit" onClick={submit} disabled={!enabled}>Submit</Button>
+                    </Col>
+                </FormGroup>
+                {!enabled && !this.passwordMinimumLength() &&
+                <FormGroup>
+                    <Col sm={4} />
+                    <Col sm={6} style={styles.validationError}> 
+                        - Password Too Short
+                    </Col>
+                </FormGroup>}
+                {!enabled && !this.passwordsMatch() &&
+                <FormGroup>
+                    <Col sm={4} />
+                    <Col sm={6} style={styles.validationError}> 
+                        - Passwords Must Match
+                    </Col>
+                </FormGroup>}
+                {!enabled && !requiredFieldsComplete &&
+                <FormGroup>
+                    <Col sm={4} />
+                    <Col sm={6} style={styles.validationError}> 
+                        - Required Fields Missing
+                    </Col>
+                </FormGroup>}
+            </div>
+        )
+    }
+
     render(){
+        let {updateField, staff, action, roles, passwordConfirmationValidationState, passwordValidationState} = this.props;
         return (
             <div>
-                <h2>{this.props.action} Staff </h2>
+                <h2>{action} Staff </h2>
                 <div className="management">
                     <Form horizontal>
                         <FormGroup controlId="formControlsSelect">
@@ -13,8 +87,8 @@ export default class StaffEditor extends React.Component{
                                 Staff Type
                             </Col>
                             <Col sm={6}>
-                                <FormControl componentClass="select" placeholder="select" onChange={this.props.updateField}>
-                                    {this.props.roles}
+                                <FormControl componentClass="select" placeholder="select" onChange={updateField} >
+                                    {roles}
                                 </FormControl>
                             </Col>
                         </FormGroup>
@@ -23,7 +97,7 @@ export default class StaffEditor extends React.Component{
                                 First Name
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="firstname" placeholder="Enter First Name" onChange={this.props.updateField} defaultValue={this.props.staff.firstName}/>
+                                <FormControl type="firstname" placeholder="Enter First Name" onChange={updateField} defaultValue={staff.firstName}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalLastName">
@@ -31,7 +105,7 @@ export default class StaffEditor extends React.Component{
                                 Last Name
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="lastName" placeholder="Enter Last Name" onChange={this.props.updateField} defaultValue={this.props.staff.lastName}/>
+                                <FormControl type="lastName" placeholder="Enter Last Name" onChange={updateField} defaultValue={staff.lastName}/>
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="formHorizontalEmail">
@@ -39,42 +113,38 @@ export default class StaffEditor extends React.Component{
                                 Email
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="email" placeholder="Enter Email" onChange={this.props.updateField} defaultValue={this.props.staff.email}/>
+                                <FormControl type="email" placeholder="Enter Email" onChange={updateField} defaultValue={staff.email}/>
                             </Col>
                         </FormGroup>
-                        <FormGroup controlId="formHorizontalPassword">
+                        <FormGroup controlId="formHorizontalPassword"
+                            validationState={passwordValidationState()}>
                             <Col componentClass={ControlLabel} smOffset={1} sm={3}>
                                 Password
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField} defaultValue={this.props.staff.password}/>
+                                <FormControl type="password" placeholder="Enter Password" onChange={updateField} defaultValue={staff.password}/>
                             </Col>
                         </FormGroup>
+                        {this.passwordsLengthShort()}
                         <FormGroup controlId="formHorizontalPasswordConfirmation"
-                            validationState={this.props.passwordConfirmationValidationState()}>
+                            validationState={passwordConfirmationValidationState()}>
                             <Col componentClass={ControlLabel} smOffset={1} sm={3}>
                                 Password Confirmation
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="password" placeholder="Enter Password" onChange={this.props.updateField} defaultValue={this.props.staff.passwordConfirmation}/>
+                                <FormControl type="password" placeholder="Enter Password" onChange={updateField} defaultValue={staff.passwordConfirmation}/>
                             </Col>
                         </FormGroup>
+                        {this.passwordsMustMatch()}
                         <FormGroup controlId="formHorizontalHourly">
                             <Col componentClass={ControlLabel} smOffset={1} sm={3}>
                                 Hourly Rate
                             </Col>
                             <Col sm={6}>
-                                <FormControl type="money" placeholder="Enter Hourly Rate" onChange={this.props.updateField} defaultValue={this.props.staff.hourly}/>
+                                <FormControl type="money" placeholder="Enter Hourly Rate" onChange={updateField} defaultValue={staff.hourly}/>
                             </Col>
                         </FormGroup>
-                        <FormGroup>
-                            <Col sm={4} />
-                            <Col sm={1}>
-                                <Button bsStyle="success" type="submit" onClick={this.props.submit}>
-                                    Submit
-                                </Button>
-                            </Col>
-                        </FormGroup>
+                        {this.submitButton()}
                     </Form>
                 </div>
             </div>

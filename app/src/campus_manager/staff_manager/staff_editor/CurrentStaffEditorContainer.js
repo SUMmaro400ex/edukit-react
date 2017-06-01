@@ -11,6 +11,7 @@ class NewStaffEditorContainer extends React.Component{
         this.submit = this.submit.bind(this);
         this.updateField = this.updateField.bind(this);
         this.getPasswordConfirmationValidationState = this.getPasswordConfirmationValidationState.bind(this);
+        this.passwordValidationState = this.passwordValidationState.bind(this);
     }
 
     getPasswordConfirmationValidationState() {
@@ -18,36 +19,21 @@ class NewStaffEditorContainer extends React.Component{
         return staff.password === staff.passwordConfirmation ? 'success' : 'error';
     }
 
+    passwordValidationState(){
+        let {staff} = this.props;
+        return staff.password.length > 6 ? 'success' : 'error';
+    }
+
     updateField(evt) {
+        let {firstNameEntered, lastNameEntered, emailEntered, passwordEntered, passwordConfirmationEntered, hourlyEntered, typeEntered} = this.props;
         switch(evt.target.id){
-            case 'formHorizontalFirstName':{
-                this.props.firstNameEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalLastName':{
-                this.props.lastNameEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalEmail':{
-                this.props.emailEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalPassword':{
-                this.props.passwordEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalPasswordConfirmation':{
-                this.props.passwordConfirmationEntered(evt.target.value);
-                break;
-            }
-            case 'formHorizontalHourly':{
-                this.props.hourlyEntered(evt.target.value);
-                break;
-            }
-            case 'formControlsSelect':{
-                this.props.typeEntered(evt.target.value);
-                break;
-            }
+            case 'formHorizontalFirstName':{firstNameEntered(evt.target.value);break;}
+            case 'formHorizontalLastName':{lastNameEntered(evt.target.value);break;}
+            case 'formHorizontalEmail':{emailEntered(evt.target.value);break;}
+            case 'formHorizontalPassword':{passwordEntered(evt.target.value);break;}
+            case 'formHorizontalPasswordConfirmation':{passwordConfirmationEntered(evt.target.value);break;}
+            case 'formHorizontalHourly':{hourlyEntered(evt.target.value);break;}
+            case 'formControlsSelect':{typeEntered(evt.target.value);break;}
         }
     }
 
@@ -65,9 +51,10 @@ class NewStaffEditorContainer extends React.Component{
     render() {
         return (<StaffEditor roles={this.roles()}
                 passwordConfirmationValidationState={this.getPasswordConfirmationValidationState}
+                passwordValidationState={this.passwordValidationState}
                 styles={styles} 
                 staff={this.props.staff}
-                action={this.props.action}
+                action="Edit"
                 submit={this.submit}
                 updateField={this.updateField}/>)
     }
