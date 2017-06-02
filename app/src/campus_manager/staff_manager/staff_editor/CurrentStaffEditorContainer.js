@@ -2,26 +2,44 @@ import React from 'react'
 import StaffEditor from './StaffEditor'
 import styles from './styles'
 import { connect } from 'react-redux'
-import { submit } from '../actions'
+import { submit, loadStaff} from '../actions'
 
 class NewStaffEditorContainer extends React.Component{
 
     constructor(props) {
         super(props);
+        let {sessionData, user, loadStaff} = props;
         this.submit = this.submit.bind(this);
         this.updateField = this.updateField.bind(this);
         this.getPasswordConfirmationValidationState = this.getPasswordConfirmationValidationState.bind(this);
         this.passwordValidationState = this.passwordValidationState.bind(this);
+        loadStaff(sessionData.businessEntity.id, user.authToken, sessionData.currentUserProfileId);
     }
 
     getPasswordConfirmationValidationState() {
         let {staff} = this.props;
-        return staff.password === staff.passwordConfirmation ? 'success' : 'error';
+        if(!staff || !staff.passwordConfirmation){
+            return null;
+        }else if (staff.password === staff.passwordConfirmation && staff.password.length >= 6){
+            return 'success';
+        }else if (staff.password !== staff.passwordConfirmation && staff.passwordConfirmation){
+            return 'error';
+        }else{
+            return null;
+        }
     }
 
     passwordValidationState(){
         let {staff} = this.props;
-        return staff.password.length > 6 ? 'success' : 'error';
+        if(!staff || !staff.password){
+            return null
+        }else if (staff.password.length >= 6){
+            return 'success';
+        }else if (staff.password){
+            return 'error';
+        }else{
+            return null;
+        }
     }
 
     updateField(evt) {
@@ -38,7 +56,8 @@ class NewStaffEditorContainer extends React.Component{
     }
 
     submit(e){
-        this.props.submit(this.props.newStaff, this.props.user.authToken, this.props.sessionData.businessEntity.id);
+        let {sessionData, user, newStaff, submit} = this.props;
+        submit(newStaff, sessionData.businessEntity.id, user.authToken, sessionData.userProfileId);
     }
 
     roles(){
@@ -79,7 +98,8 @@ function mapDispatchToProps(dispatch) {
             passwordConfirmationEntered: function(value){dispatch({type: 'CURRENT_STAFF_PASSWORD_CONFIRMATION_ENTERED', payload: value})},
             hourlyEntered: function(value){dispatch({type: 'CURRENT_STAFF_HOURLY_ENTERED', payload: value})},
             typeEntered: function(value){dispatch({type: 'CURRENT_STAFF_TYPE_ENTERED', payload: value})},
-            submit: function(staff, authToken, businessEntityId){dispatch(submit(staff, authToken, businessEntityId))},
+            submit: function(staff, businessEntityId, authToken, userProfileId){dispatch(submit(staff, businessEntityId,  authToken, userProfileId))},
+            loadStaff: function(businessEntityId, authToken, userProfileId){dispatch(loadStaff(businessEntityId, authToken, userProfileId))}
         }   
     );
 }

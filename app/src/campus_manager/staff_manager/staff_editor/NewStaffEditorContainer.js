@@ -16,9 +16,11 @@ class NewStaffEditorContainer extends React.Component{
 
     getPasswordConfirmationValidationState() {
         let {staff} = this.props;
-        if (staff.password === staff.passwordConfirmation && staff.password.length >= 6){
+        if(!staff || !staff.passwordConfirmation){
+            return null;
+        }else if (staff.password === staff.passwordConfirmation && staff.password.length >= 6){
             return 'success';
-        }else if (staff.password !== staff.passwordConfirmation){
+        }else if (staff.password !== staff.passwordConfirmation && staff.passwordConfirmation){
             return 'error';
         }else{
             return null;
@@ -27,9 +29,11 @@ class NewStaffEditorContainer extends React.Component{
 
     passwordValidationState(){
         let {staff} = this.props;
-        if (staff.password.length >= 6){
+        if(!staff || !staff.password){
+            return null
+        }else if (staff.password.length >= 6){
             return 'success';
-        }else if (this.props.staff.password){
+        }else if (staff.password){
             return 'error';
         }else{
             return null;
@@ -50,7 +54,8 @@ class NewStaffEditorContainer extends React.Component{
     }
 
     submit(e){
-        this.props.submit(this.props.newStaff, this.props.user.authToken, this.props.sessionData.businessEntity.id);
+        let {sessionData, user, newStaff, submit} = this.props;
+        submit(newStaff, sessionData.businessEntity.id, user.authToken, sessionData.userProfileId);
     }
 
     roles(){
@@ -91,7 +96,7 @@ function mapDispatchToProps(dispatch) {
             passwordConfirmationEntered: function(value){dispatch({type: 'NEW_STAFF_PASSWORD_CONFIRMATION_ENTERED', payload: value})},
             hourlyEntered: function(value){dispatch({type: 'NEW_STAFF_HOURLY_ENTERED', payload: value})},
             typeEntered: function(value){dispatch({type: 'NEW_STAFF_TYPE_ENTERED', payload: value})},
-            submit: function(staff, authToken, businessEntityId){dispatch(submit(staff, authToken, businessEntityId))},
+            submit: function(staff, businessEntityId, authToken, userProfileId){dispatch(submit(staff, businessEntityId,  authToken, userProfileId))}
         }   
     );
 }

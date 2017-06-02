@@ -20,7 +20,6 @@ export default function reducer(state = initialState, action){
                 authToken: action.payload.auth_token, 
                 loggedIn: true, 
                 password: null, 
-                email: null, 
                 id: action.payload.user.id, 
                 firstName: action.payload.user.first_name, 
                 lastName: action.payload.user.last_name, 

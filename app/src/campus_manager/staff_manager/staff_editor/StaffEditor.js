@@ -34,7 +34,7 @@ export default class StaffEditor extends React.Component{
     }
 
     passwordMinimumLength(){
-        return(this.props.staff.password.length >= 6 || !this.props.staff.password)
+        return(!this.props.staff.password || this.props.staff.password.length >= 6)
     }
 
     submitButton(){
@@ -87,7 +87,7 @@ export default class StaffEditor extends React.Component{
                                 Staff Type
                             </Col>
                             <Col sm={6}>
-                                <FormControl componentClass="select" placeholder="select" onChange={updateField} >
+                                <FormControl componentClass="select" placeholder="select" className="form-control" onChange={updateField} >
                                     {roles}
                                 </FormControl>
                             </Col>
