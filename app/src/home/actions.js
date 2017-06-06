@@ -29,8 +29,7 @@ export function logoutUser(authToken)
            hashHistory.push('/'); 
         })
         .catch((err) =>{
-            alert('Logout Failed. Please Try Again');
-            dispatch({type: 'LOGOUT_ERROR', payload: err})
-        })
+            dispatch({type: 'RESET_STATE', payload: err.data})
+        })        
     }
 }

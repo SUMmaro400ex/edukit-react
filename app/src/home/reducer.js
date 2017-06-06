@@ -25,7 +25,7 @@ export default function reducer(state = initialState, action){
                 lastName: action.payload.user.last_name, 
                 email: action.payload.user.email,
                 userProfiles: action.payload.user_profiles 
-            };
+            }
         }
         case "LOGIN_ERROR":{
             return {
@@ -53,7 +53,9 @@ export default function reducer(state = initialState, action){
             return initialState;
         }
         case "LOGOUT_ERROR":{
-            return {...state};
+            return {
+                initialState
+            }
         }
         default: 
             return state;

@@ -25,7 +25,8 @@ class StaffManagerContainer extends React.Component{
     }
     staffList(){
         let {staff} = this.props.sessionData;
-        return [this.newStaffItem(staff.length)].concat(staff.map((member) => this.currentStaffItem(member)))
+        let length = staff.length || 0;
+        return [this.newStaffItem(length)].concat(staff.map((member) => this.currentStaffItem(member)))
     }
 
     newStaffItem(totalStaff){

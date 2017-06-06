@@ -5,10 +5,9 @@ var styles = {
     },
     navColumn:{
         paddingLeft: 0,
+        backgroundColor: '#F8F8F8',
         paddingRight: 0, 
-        height: '100vh',
-        backgroundColor: '#F8F8F8F8'
-        // borderRight: '1px solid #e7e7e7'
+        height: '100vh'
     },
     contentColumn:{
         height: '100vh',
