@@ -5,6 +5,7 @@ import { getProfilesForUser } from './actions'
 import Dashboard from './Dashboard'
 import { frontLoadData } from './actions'
 import styles from './styles'
+import './Dashboard.css'
 
 class DashboardContainer extends React.Component{
 
