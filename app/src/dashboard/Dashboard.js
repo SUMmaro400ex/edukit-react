@@ -9,7 +9,7 @@ export default class Dashboard extends React.Component{
             <Grid>
                 <Row>
                     <Col smOffset={2} xs={4}>
-                    <Thumbnail src="https://image.flaticon.com/icons/svg/234/234674.svg" alt="242x200">
+                    <Thumbnail src="https://s3-us-west-1.amazonaws.com/www.edukit.co/images/school.png" alt="242x200">
                         <h2 style={styles.text}>Campus Manager</h2>
                         <p style={styles.text}>Manage Staff, Cohorts, Budget, and more</p>
                         <br/>
@@ -19,7 +19,7 @@ export default class Dashboard extends React.Component{
                     </Thumbnail>
                     </Col>
                     <Col xs={4}>
-                    <Thumbnail src="https://image.flaticon.com/icons/svg/234/234211.svg" alt="242x200" >
+                    <Thumbnail src="https://s3-us-west-1.amazonaws.com/www.edukit.co/images/calendar.png" alt="242x200" >
                         <h2 style={styles.text}>Scheduler</h2>
                         <p style={styles.text}>Manage you schedule. Create, update, delete, and view events</p>
                         <p>
