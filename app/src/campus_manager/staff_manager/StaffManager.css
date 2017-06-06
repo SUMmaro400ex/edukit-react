@@ -1,0 +1,11 @@
+ul.nav-pills li a{
+    border-radius: 0px;
+    padding-top: 1em;
+    padding-bottom: 1em; 
+}
+#left-tabs-example-tab-newStaff{
+    background-color: white !important;
+    color: #777777;
+    padding-top: 0;
+    padding-bottom: 0;
+}

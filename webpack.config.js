@@ -9,8 +9,9 @@ module.exports = {
     './app/index.js'
   ],
   module: {
-    loaders: [
-        {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
+    rules: [
+        {test: /\.css$/, use: ['style-loader', 'css-loader']},
+        {test: /\.js$/, exclude: /node_modules/, use: ['babel-loader']}
     ]
   },
   output: {

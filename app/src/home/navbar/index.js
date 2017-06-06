@@ -18,7 +18,8 @@ class NavbarContainer extends React.Component{
 
     render(){   
         return (
-            <Navbar logout={this.logout} 
+            <Navbar logout={this.logout}
+            sessionData={this.props.sessionData} 
             userState={this.props.user}
             styles={styles}/>
         )
@@ -28,6 +29,7 @@ class NavbarContainer extends React.Component{
 function mapStateToProps(state){
     return {
         isLoggedIn: state.user.loggedIn,
+        sessionData: state.sessionData,
         user: state.user
     };
 }

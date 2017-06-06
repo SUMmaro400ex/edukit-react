@@ -1,9 +1,10 @@
 const initialState = {
     businessEntity: null,
     rights: null,
-    roles: null,
+    roles: [],
     rightRoleLinks: null,
     currentUserProfileId: null,
+    currentApp: null,
     staff: []
 }
 export default function reducer(state = initialState, action){
@@ -23,6 +24,12 @@ export default function reducer(state = initialState, action){
         }
         case "RESET_STATE":{
             return initialState;
+        }
+        case "APP_SELECTED":{
+            return {
+                ...state,
+                currentApp: action.payload
+            }
         }
         case "LOAD_STAFF_SUCCESS":{
             let staff = action.payload.map((staff) =>{

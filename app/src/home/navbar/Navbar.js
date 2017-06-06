@@ -12,7 +12,7 @@ export default class Navbar extends React.Component{
                                     src="https://s3-us-west-1.amazonaws.com/www.edukit.co/images/logo_small.png" 
                                     style={this.props.styles.img}/>
                             </a>
-                            <h2 className='navbar-text'>EduKit</h2>
+                            <h2 className='navbar-text'>{`EduKit | ${this.props.sessionData.currentApp}` || "EduKit"}</h2>
                         </div>
                         <div className="navbar-form navbar-right">
                             <div className="form-group">

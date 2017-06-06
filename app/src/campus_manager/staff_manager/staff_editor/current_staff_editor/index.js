@@ -1,8 +1,10 @@
 import React from 'react'
-import StaffEditor from './StaffEditor'
-import styles from './styles'
+import styles from '../styles'
 import { connect } from 'react-redux'
-import { submit, loadStaff} from '../actions'
+import { submit, loadStaff} from '../../actions'
+import {ListGroupItem} from 'react-bootstrap'
+import StaffEditor from '../StaffEditor'
+
 
 class NewStaffEditorContainer extends React.Component{
 
@@ -13,7 +15,7 @@ class NewStaffEditorContainer extends React.Component{
         this.updateField = this.updateField.bind(this);
         this.getPasswordConfirmationValidationState = this.getPasswordConfirmationValidationState.bind(this);
         this.passwordValidationState = this.passwordValidationState.bind(this);
-        loadStaff(sessionData.businessEntity.id, user.authToken, sessionData.currentUserProfileId);
+        // loadStaff(sessionData.businessEntity.id, user.authToken, sessionData.currentUserProfileId);
     }
 
     getPasswordConfirmationValidationState() {
@@ -60,6 +62,17 @@ class NewStaffEditorContainer extends React.Component{
         submit(newStaff, sessionData.businessEntity.id, user.authToken, sessionData.userProfileId);
     }
 
+    staffList(){
+        return(
+            this.props.sessionData.staff.map((staff) =>
+                <ListGroupItem key={staff.id} onClick={this.staffSelected}>{staff.firstName} {staff.lastName}</ListGroupItem>
+            )
+        )
+    }
+    
+    staffSelected(staffId){
+        alert(staffId);
+    }
     roles(){
         return (
                 this.props.sessionData.roles.map((role) =>
@@ -99,7 +112,6 @@ function mapDispatchToProps(dispatch) {
             hourlyEntered: function(value){dispatch({type: 'CURRENT_STAFF_HOURLY_ENTERED', payload: value})},
             typeEntered: function(value){dispatch({type: 'CURRENT_STAFF_TYPE_ENTERED', payload: value})},
             submit: function(staff, businessEntityId, authToken, userProfileId){dispatch(submit(staff, businessEntityId,  authToken, userProfileId))},
-            loadStaff: function(businessEntityId, authToken, userProfileId){dispatch(loadStaff(businessEntityId, authToken, userProfileId))}
         }   
     );
 }
