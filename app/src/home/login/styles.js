@@ -11,7 +11,7 @@ var styles = {
     },
     main:{
         width:'100vw', 
-        backgroundColor: '#5CB85C'
+        backgroundColor: '#299AE3'
     }
 };
 
