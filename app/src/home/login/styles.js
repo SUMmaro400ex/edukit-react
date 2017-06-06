@@ -8,6 +8,10 @@ var styles = {
         borderColor: '#E7E7E7',
         borderRadius: 20,
         backgroundColor: '#F8F8F8'
+    },
+    main:{
+        width:'100vw', 
+        backgroundColor: '#5CB85C'
     }
 };
 

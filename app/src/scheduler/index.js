@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 class SchedulerContainer extends React.Component{
 
     render() {
-        return (<h1>Scheduler</h1>)
+        return (<h1 style={{height: '100vh', backgroundColor:'white'}}>Scheduler</h1>)
     }
 }
 

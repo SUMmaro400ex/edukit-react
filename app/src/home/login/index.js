@@ -4,7 +4,7 @@ import Login from './Login'
 import { connect } from 'react-redux'
 import { loginUser, logoutUser } from '../actions'
 import { hashHistory } from 'react-router'
-
+import './Login.css'
 class LoginContainer extends React.Component{
 
     constructor(props) {

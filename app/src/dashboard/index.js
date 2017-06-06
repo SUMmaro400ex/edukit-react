@@ -4,6 +4,7 @@ import { hashHistory } from 'react-router'
 import { getProfilesForUser } from './actions'
 import Dashboard from './Dashboard'
 import { frontLoadData } from './actions'
+import styles from './styles'
 
 class DashboardContainer extends React.Component{
 
@@ -32,6 +33,7 @@ class DashboardContainer extends React.Component{
     render() {
         return (
           <Dashboard openCampusManager={this.openCampusManager} 
+          styles={styles}
           openScheduler={this.openScheduler}/>
         )
     }
