@@ -11,7 +11,7 @@ export default function reducer(state = initialState, action){
     switch (action.type){
         case "FRONT_LOAD_DATA_SUCCESS":{
             return {
-                 ...state, 
+                 ...state,
                  businessEntity: action.payload.business_entity,
                  rights: action.payload.rights,
                  roles: action.payload.roles,
@@ -33,40 +33,52 @@ export default function reducer(state = initialState, action){
         }
         case "LOAD_STAFF_SUCCESS":{
             let staff = action.payload.map((staff) =>{
-                return({
-                    id: staff.id,
-                    firstName: staff.first_name,
-                    lastName: staff.last_name,
-                    email: staff.email,
-                    createdAt: staff.created_at,
-                    updatedAt: staff.updated_at,
-                    userProfiles: staff.user_profiles.map((userProfile) =>{
-                        return({
-                            id: userProfile.id,
-                            userId: userProfile.user_id,
-                            createdAt: userProfile.created_at,
-                            updatedAt: userProfile.updated_at,
-                            businessEntityId: userProfile.business_entity_id,
-                            roles: userProfile.roles.map((role) =>{
-                                return ({
-                                    id: role.id,
-                                    name: role.name,
-                                    description: role.description,
-                                    code: role.code,
-                                    createdAt: role.created_at,
-                                    updatedAt: role.updated_at
-                                })
-                            })
-                        })
+                return createStaffObject(staff);
+            })
+            return {
+                 ...state,
+                 staff
+            };
+        }
+        case "STAFF_SUBMISSION_SUCCESS":{
+            let staff = state.staff.concat(createStaffObject(action.payload));
+            return {
+                ...state,
+                staff
+            };
+        }
+        default:
+            return state;
+    }
+}
+
+
+const createStaffObject = (staff) => {
+    return({
+        id: staff.id,
+        firstName: staff.first_name,
+        lastName: staff.last_name,
+        email: staff.email,
+        createdAt: staff.created_at,
+        updatedAt: staff.updated_at,
+        userProfiles: staff.user_profiles.map((userProfile) =>{
+            return({
+                id: userProfile.id,
+                userId: userProfile.user_id,
+                createdAt: userProfile.created_at,
+                updatedAt: userProfile.updated_at,
+                businessEntityId: userProfile.business_entity_id,
+                roles: userProfile.roles.map((role) =>{
+                    return ({
+                        id: role.id,
+                        name: role.name,
+                        description: role.description,
+                        code: role.code,
+                        createdAt: role.created_at,
+                        updatedAt: role.updated_at
                     })
                 })
             })
-            return {
-                 ...state, 
-                 staff: staff
-            };
-        }
-        default: 
-            return state;
-    }
+        })
+    })
 }
