@@ -8,10 +8,10 @@ export default class StaffManager extends React.Component{
         let {sessionData, newStaff, currentStaff, styles, staffList, newStaffClicked, currentStaffPanes} = this.props;
         return (
             <div>
-                <Tab.Container id="left-tabs-example" defaultActiveKey='staffManager'>
+                <Tab.Container id="left-tabs-example" defaultActiveKey='newStaff'>
                     <Row className="clearfix">
                         <Col sm={3} style={styles.navColumn}>
-                            <Nav bsStyle="pills" stacked style={styles.navItem}>
+                            <Nav bsStyle="pills" stacked>
                                 {staffList}
                             </Nav>
                         </Col>

@@ -4,7 +4,7 @@ import styles from './styles'
 import { connect } from 'react-redux'
 import { submit } from './actions'
 import { loadStaff} from './actions'
-import CurrentStaffEditorContainer from './staff_editor/current_staff_editor'
+import CurrentStaffEditorContainer from './staff_editor/CurrentStaffEditorContainer'
 import {NavItem, Image, Tab} from 'react-bootstrap'
 
 
@@ -31,13 +31,13 @@ class StaffManagerContainer extends React.Component{
 
     newStaffItem(totalStaff){
         return(<NavItem key={'newStaff'}eventKey='newStaff' style={styles.newStaffItem}>
-                    <h2>Staff ({totalStaff}) <i className="fa fa-user-plus" style={styles.newStaffIcon}/></h2>
+                    Staff ({totalStaff}) <i className="fa fa-user-plus" style={styles.newStaffIcon}/>
                 </NavItem>)
     }
 
     currentStaffItem(member){
-        return(<NavItem key={'currentStaff' + member.id} eventKey={'currentStaff' + member.id}>
-                    <Image src="http://www.loopfitness.com.tr/wp-content/uploads/2015/12/avatar-1.png" circle style={styles.currentStaffIcon}/> 
+        return(<NavItem key={'currentStaff' + member.id} eventKey={'currentStaff' + member.id} style={styles.currentStaffItem}>
+                    <Image src="http://appvn.com/public/frontend/img/avatar-default.png" circle style={styles.currentStaffIcon}/> 
                     {member.firstName} {member.lastName}
                 </NavItem>)
     }

@@ -36,6 +36,7 @@ export function loadStaff(businessEntityId, authToken, userProfileId)
         })
         .then((response) => {
             dispatch({type: 'LOAD_STAFF_SUCCESS', payload: response.data})
+            dispatch({type: 'UPDATE_CURRENT_STAFF', payload: response.data})
         })
         .catch((err) => {
             dispatch({type: 'LOAD_STAFF_ERROR', payload: err})

@@ -69,6 +69,7 @@ class NewStaffEditorContainer extends React.Component{
         return (<StaffEditor roles={this.roles()}
                 passwordConfirmationValidationState={this.getPasswordConfirmationValidationState}
                 passwordValidationState={this.passwordValidationState}
+                isEditing={false}
                 styles={styles} 
                 staff={this.props.staff}
                 action="Add"
