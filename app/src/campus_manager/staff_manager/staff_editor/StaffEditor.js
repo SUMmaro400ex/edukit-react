@@ -57,21 +57,21 @@ export default class StaffEditor extends React.Component{
                 {!isEditing && !this.passwordMinimumLength() &&
                 <FormGroup>
                     <Col sm={3} />
-                    <Col sm={7} style={styles.validationError}> 
+                    <Col sm={7} style={styles.validationError}>
                         - Password Too Short
                     </Col>
                 </FormGroup>}
                 {!isEditing && !this.passwordsMatch() &&
                 <FormGroup>
                     <Col sm={3} />
-                    <Col sm={7} style={styles.validationError}> 
+                    <Col sm={7} style={styles.validationError}>
                         - Passwords Must Match
                     </Col>
                 </FormGroup>}
                 {!isEditing && !this.requiredFieldsComplete(isEditing) &&
                 <FormGroup>
                     <Col sm={3} />
-                    <Col sm={7} style={styles.validationError}> 
+                    <Col sm={7} style={styles.validationError}>
                         - Required Fields Missing
                     </Col>
                 </FormGroup>}
@@ -97,7 +97,7 @@ export default class StaffEditor extends React.Component{
                                     Staff Type
                                 </Col>
                                 <Col sm={7}>
-                                    <FormControl componentClass="select" placeholder="select" className="form-control" onChange={updateField} >
+                                    <FormControl componentClass="select" placeholder="select" className="form-control" onChange={updateField} defaultValue={roles[0].code} >
                                         {roles}
                                     </FormControl>
                                 </Col>
@@ -162,5 +162,5 @@ export default class StaffEditor extends React.Component{
                 </Col>
             </div>
         )
-    } 
+    }
 }
